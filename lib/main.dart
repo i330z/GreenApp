@@ -79,7 +79,11 @@ class MyHome extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context,MaterialPageRoute(
+                                  builder: (context) => DetailsScreen()
+                                ));
+                              },
                               backgroundColor: greenColor,
                               child: Icon(Icons.shopping_cart),
                             ),
@@ -199,3 +203,68 @@ class MyHome extends StatelessWidget {
     );
   }
 }
+
+class DetailsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: greenColor,
+      body: Container(
+        padding: EdgeInsets.all(32.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Greenary nyc',
+              style: TextStyle(
+                color: Colors.white,
+                letterSpacing: 1.1,
+                fontSize: 22.0,
+              ),
+            ),
+            SizedBox(height: 30.0),
+            Container(
+              width: 200,
+              child: Text(
+                'Product Overview',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 38.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 30.0),
+            itemRow(Icons.star, 'water', 'every 7 days'),
+            SizedBox(height: 22.0),
+            itemRow(Icons.ac_unit, 'Humidity', 'up to 82%'),
+            SizedBox(height: 22.0),
+            itemRow(Icons.straighten, 'Size', '38" - 48"tdll'),
+          ],
+        ),
+      )
+    );
+  }
+}
+
+itemRow(icon, name, title){
+  return Row(
+    children: <Widget>[
+      Row(
+        children: <Widget>[
+          Icon(
+            icon,
+            color: Colors.white,
+          ),
+          SizedBox(width: 8.0),
+          Text(
+            name,
+            style: TextStyle(color: Colors.white, fontSize: 20.0),
+          )
+        ],
+      ),
+      Spacer(),
+      Text(title, style: TextStyle(color: Colors.white54, fontSize: 16.0))
+    ],
+  );
+}
+
